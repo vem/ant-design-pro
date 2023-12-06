@@ -9,20 +9,20 @@ jobs:
     name: deploy to staging
     runs-on: ubuntu-22.04
     steps:
-    - name: Setup Node
+    - name: 设置 Node
       uses: actions/setup-node@v1
       with:
         node-version: '16.x'
-    - name: Install Dependencies
+    - name: 安装依赖
       run: npm install
-    - name: build software
+    - name: 打包软件
       run: npm run build
-    - name: upload
+    - name: 上传
       uses: appleboy/scp-action@v0.0.1
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
         port: 22
-        source: "dist"
+        source: "./dist"
         target: /www/wwwroot/actions.h5.run
